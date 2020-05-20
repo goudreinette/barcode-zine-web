@@ -1,9 +1,9 @@
-import "./styles.css";
 import Quagga from "quagga";
 import Tone from "tone";
 import $ from "jquery";
 
 $(function() {
+  var value;
   var App = {
     init: function() {
       Quagga.init(this.state, function(err) {
@@ -181,7 +181,7 @@ $(function() {
 
   // Tone, global to interact with it in console
   const reverb = new Tone.Reverb().toMaster();
-  const synth = (window.synth = new Tone.AMSynth());
+  window.synth = new Tone.AMSynth();
 
   synth.connect(reverb);
 
