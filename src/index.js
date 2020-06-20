@@ -180,10 +180,11 @@ $(function() {
   });
 
   // Tone, global to interact with it in console
-  const reverb = new Tone.Reverb().toMaster();
-  window.synth = new Tone.AMSynth();
+  // const reverb = new Tone.Reverb().toMaster();
+  const synth = (window.synth = new Tone.AMSynth());
 
-  synth.connect(reverb);
+  synth.toMaster();
+  // synth.connect(reverb);
 
   Quagga.onDetected(function(result) {
     var code = result.codeResult.code;
@@ -209,20 +210,21 @@ function executeCommand(code) {
   const [command, param] = code.split("-");
   console.log(code, command, param);
 
+  synth.triggerAttackRelease(code.replace("S", "#"), "16n");
   // NOTE
-  if (command == "N") {
-    synth.triggerAttackRelease(param, "16n");
-  }
+  // if (command == "N") {
+  //   synth.triggerAttackRelease(param, "16n");
+  // }
 
-  // FREQUENCY
-  if (command == "F") {
-    synth.triggerAttackRelease(param, "16n");
-  }
+  // // FREQUENCY
+  // if (command == "F") {
+  //   synth.triggerAttackRelease(param, "16n");
+  // }
 
-  // REVERB
-  if (command == "R") {
-    reverb.decay = parseInt(command);
-  }
+  // // REVERB
+  // if (command == "R") {
+  //   reverb.decay = parseInt(command);
+  // }
 }
 
 addEventListener("keydown", e => {
