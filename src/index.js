@@ -1,6 +1,3 @@
-import Quagga from "quagga";
-import Tone from "tone";
-
 /**
  * Init
  */
@@ -35,6 +32,7 @@ Quagga.init(
     }
   }
 );
+
 
 /**
  * Debug lines
@@ -79,6 +77,7 @@ Quagga.onProcessed(result => {
   }
 });
 
+
 /**
  * Synth setup
  */
@@ -93,6 +92,7 @@ Quagga.onDetected(result => {
   var code = result.codeResult.code;
   executeCommand(code);
 });
+
 
 function executeCommand(code) {
   const [command, param] = code.split("-");
@@ -131,9 +131,10 @@ function executeCommand(code) {
   // }
 }
 
+
 /**
  * Keyboard debugging
  */
-window.addEventListener("keydown", e => {
+addEventListener("keydown", e => {
   synth.triggerAttackRelease(`${e.key}3`, "16n");
 });
