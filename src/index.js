@@ -1,29 +1,7 @@
 /**
  * Init
  */
-Quagga.init({
-    inputStream: {
-      type: "LiveStream",
-      constraints: {
-        width: { min: 640 },
-        height: { min: 480 },
-        aspectRatio: { min: 1, max: 100 },
-        facingMode: "environment" // or user
-      }
-    },
-    locator: {
-      patchSize: "large",
-      halfSample: true
-    },
-    numOfWorkers: 4,
-    decoder: {
-      readers: ["code_39_reader", "code_128_reader"]
-    },
-    locate: true,
-    multiple: true
-  },
-
-  err => {
+Quagga.init({}, err => {
     if (err) {
       console.log(err);
     } else {
@@ -130,7 +108,7 @@ function executeCommand(code) {
   }
 
   // Scanned reverb
-  else if (command == "RV") {
+  else if (command == "R") {
     reverb.decay = parseInt(param);
   }
 
